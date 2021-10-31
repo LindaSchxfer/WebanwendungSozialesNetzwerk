@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Startseite')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -9,7 +11,7 @@
 
                 <div class="card-body">
 
-                    Willkommen bei Linda´s sozialem Netzwerk!
+                    Willkommen bei lindagram!
 
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    Infos zu Linda´s sozialem Netzwerk!
+                    Infos zu lindagram!
 
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
