@@ -13,6 +13,7 @@
                             <li class="list-group-item">{{$hobby->name}}</li>
                         @endforeach
                     </ul> 
+                    <a class="btn btn-success btn-sm mt-3" href="hobby/create"><i class="fas fa-plus-circle"></i>Neues Hobby anlegen</a>
                 </div>
             </div>
         </div>
