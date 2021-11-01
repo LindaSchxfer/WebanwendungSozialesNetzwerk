@@ -13,6 +13,8 @@
 
                     Willkommen bei lindagram!
 
+                    <span class="btn btn-primary"><i class="fas fa-plus"></i>Hallo</span>
+
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
