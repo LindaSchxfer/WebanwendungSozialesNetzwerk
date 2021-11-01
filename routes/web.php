@@ -24,3 +24,5 @@ Route::get('/info', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resources(['hobby' => 'App\Http\Controllers\HobbyController']);
