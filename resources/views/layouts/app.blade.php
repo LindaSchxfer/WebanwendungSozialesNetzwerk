@@ -87,11 +87,18 @@
 
         <main class="py-4">
 
+            @isset($meldung_success)
+                <div class="cotainer">
+                </div class="alert alert-success" role="alert">
+                    {!! $meldung_success !!}
+                </div>
+            @endisset
+
             @if($errors->any())
                 <div class="cotainer">
                     </div class="alert alert-danger">
                         Bitte überprüfe Deine Eingaben!
-                        <ul class="mb">
+                        <ul class="mb-0">
                             @foreach($errors->all() as $error)
                             <li>{!! $error !!}</li>
                             @endforeach

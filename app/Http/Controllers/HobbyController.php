@@ -50,7 +50,10 @@ class HobbyController extends Controller
             ]
         );
         $hobby->save();
-        return redirect('/hobby');
+        //return redirect('/hobby');
+        return $this->index()->with([
+            'meldung_success' => 'Dein Hobby <b>' . $hobby->name . '</b> wurde erfolgreich angelegt.'
+        ]);
     }
 
     /**
