@@ -28,3 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resources(['hobby' => 'App\Http\Controllers\HobbyController']);
 
 Route::resources(['hashtag' => 'App\Http\Controllers\HashtagController']);
+
+Route::resources(['post' => 'App\Http\Controllers\PostController']);
+
