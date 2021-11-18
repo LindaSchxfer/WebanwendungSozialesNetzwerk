@@ -42,9 +42,6 @@
                             <a class="nav-link {{Request::is('post*') ? 'active' : ''}}" href="/post">Posts</a>
                         </li>    
                         <li class="nav-item">
-                            <a class="nav-link {{Request::is('hobby*') ? 'active' : ''}}" href="/hobby">Hobbies</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link {{Request::is('hashtag*') ? 'active' : ''}}" href="/hashtag">Hashtags</a>
                         </li>
                         <li class="nav-item">
