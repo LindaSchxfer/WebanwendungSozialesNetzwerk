@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -21,7 +22,23 @@ class UserSeeder extends Seeder
                 [
                     'user_id' => $user->id
                 ]
-            );
+            )
+            ->each(function ($post) {
+                $hashtag_ids  = range(1,8);
+                shuffle($hashtag_ids);
+                $verknuepfungen = array_slice($hashtag_ids, 0, rand(0,8)); 
+                foreach ($verknuepfungen as $value) {
+                    DB::table('hashtag_post')
+                        ->insert(
+                            [
+                                'post_id' => $post->id,
+                                'hashtag_id' => $value,
+                                'created_at' => Now(),
+                                'updated_at' => Now()
+                            ]
+                        );
+                }
+            });
         });
     }
 }
