@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Alle Hobbies</div>
+                <div class="card-header">Neuer Beitrag</div>
 
                 <div class="card-body">
                     <form action = "/post" method="post">

@@ -18,7 +18,7 @@ class CreateHashtagPostTable extends Migration
             $table->unsignedBigInteger('hashtag_id')->nullable();
             $table->timestamps();
 
-            $table->primary('post_id', 'hashtag_id');
+            $table->primary(['post_id', 'hashtag_id']);
 
             $table->foreign('post_id')
                 ->references('id')->on('posts')

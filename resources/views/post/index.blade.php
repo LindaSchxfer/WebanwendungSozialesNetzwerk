@@ -10,13 +10,13 @@
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach ($posts as $post)
-                            <li class="list-group-item">{{$post->name}} <a class="ml-2" href="/post/{{ $post->id }}">Detailansicht</a>
-                                <a class="ml-2 btn btn-sm btn-outline-primary" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
+                            <li class="list-group-item">{{$post->name}} {{$post->beschreibung}}
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <input class="btn btn-outline-danger btn-sm" type="submit" value="Löschen">
+                                    <input class="ml-2 btn btn-outline-danger btn-sm float-right" type="submit" value="Löschen">
                                 </form>
+                                <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
                             </li>
                         @endforeach
                     </ul> 
