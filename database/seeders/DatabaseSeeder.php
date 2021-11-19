@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //Aufruf der verschiedenen Seeder zur Voreinstellung der Databases
         $this->call(HashtagSeeder::class);
+
         $this->call(UserSeeder::class);
     }
 }
