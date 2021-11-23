@@ -17,10 +17,14 @@
                                     <input class="ml-2 btn btn-outline-danger btn-sm float-right" type="submit" value="Löschen">
                                 </form>
                                 <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
+                                <div class="float-right">{{ $post->created_at->diffForHumans() . " gepostet" }}</div>
                             </li>
                         @endforeach
                     </ul> 
                     <a class="btn btn-success btn-sm mt-3" href="/post/create"><i class="fas fa-plus-circle"></i>Neuen Post anlegen</a>
+                    <div class="mt-3">
+                            {{ $posts->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
