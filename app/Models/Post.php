@@ -10,4 +10,12 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'beschreibung'];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function hashtags(){
+        return $this->belongsToMany('App\Models\Hashtag');
+    }
 }
