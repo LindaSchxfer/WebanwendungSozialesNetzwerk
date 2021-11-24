@@ -12,7 +12,7 @@
                         @foreach ($posts as $post)
                             <li class="list-group-item">{{$post->name}} {{$post->beschreibung}}
 
-                                <span class="mx-2"> Von {{ $post->user_id}} </span>
+                                <span class="mx-2"><b> Von {{ $post->user->name}} </b></span>
 
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
