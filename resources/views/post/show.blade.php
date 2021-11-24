@@ -8,22 +8,32 @@
                 <div class="card-header">Post Detailansicht</div>
 
                 <div class="card-body">
-                    <p><b>{{ $post->name}}</b></p> 
-                    <p>{{ $post->beschreibung}}</p> 
-                    @if($post->hashtags->count() > 0)
-                    <p>
-                        <b>Verknüpfte Hashtags:</b> (Klicken, zum entfernen)<br>
-                        @foreach ($post->hashtags as $hashtag)
-                            <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/detach">{{ $hashtag->name }}</a>
-                        @endforeach
-                    </p>
-                    @endif
-                    <p>
-                        <b>Verfügbare Hashtags:</b> (Klicken, zum hinzufügen)<br>
-                        @foreach ($availableHashtags as $hashtag)
-                            <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/attach">{{ $hashtag->name }}</a>
-                        @endforeach
-                    </p>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p><b>{{ $post->name}}</b></p> 
+                            <p>{{ $post->beschreibung}}</p> 
+                            @if($post->hashtags->count() > 0)
+                            <p>
+                                <b>Verknüpfte Hashtags:</b> (Klicken, zum entfernen)<br>
+                                @foreach ($post->hashtags as $hashtag)
+                                    <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/detach">{{ $hashtag->name }}</a>
+                                @endforeach
+                            </p>
+                            @endif
+                            <p>
+                                <b>Verfügbare Hashtags:</b> (Klicken, zum hinzufügen)<br>
+                                @foreach ($availableHashtags as $hashtag)
+                                    <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/attach">{{ $hashtag->name }}</a>
+                                @endforeach
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/img/400x300.jpg" data-lightbox="400x300.jpg" data-title="{{ $post->name }}">
+                                <img class="img-fluid" src="/img/400x300.jpg" alt="">
+                            </a>
+                            Bild anklicken zum Vergrößern
+                        </div>
+                    </div>
 
                     <!-- Zurück link wird nicht angezeigt, wenn ich von der User Detailseite komme -->
                     @if( !(strstr( URL::previous(), '/user/' )))

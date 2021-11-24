@@ -11,6 +11,7 @@
                     <ul class="list-group">
                         @foreach ($posts as $post)
                             <li class="list-group-item">
+                                
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
@@ -20,6 +21,8 @@
                                 <a class="ml-2 float-right" href="/post/{{ $post->id }}">Detailansicht</a>
 
                                 <b><a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b> 
+                                <br>
+                                <a href="/user/{{ $post->user->id }}"><img src="/img/thumb_hoch.jpg"></a>
                                 <br>
                                 {{$post->name}} <br> {{$post->beschreibung}} <br>   
                                 @foreach ($post->hashtags as $hashtag)

@@ -11,7 +11,11 @@
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach ($posts as $post)
-                            <li class="list-group-item">{{$post->name}} {{$post->beschreibung}}
+                        
+                            <li class="list-group-item">
+                                <a href="/user/{{ $post->user->id }}"><img src="/img/thumb_hoch.jpg"></a>
+                                <br>
+                                {{$post->name}} {{$post->beschreibung}}
 
                                 <span class="mx-2"><b> Von <a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b></span>
 
