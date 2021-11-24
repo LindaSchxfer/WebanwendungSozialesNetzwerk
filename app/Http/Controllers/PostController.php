@@ -16,10 +16,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::all();
-        //$posts = Post::paginate(10);
+        
+        //Meldungen refreshen
+        $meldung_success = Session::get('meldung_success');
+        $meldung_hinweis = Session::get('meldung_hinweis');
+
         $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
-        return view('post.index')->with('posts',$posts);
+        return view('post.index')->with(
+            [
+                'posts' => $posts,
+                'meldung_success' => $meldung_success,
+                'meldung_hinweis' => $meldung_hinweis
+            ]
+        );
     }
 
     /**
@@ -137,7 +146,7 @@ class PostController extends Controller
     {
         $old_name = $post->name;
         $post->delete();
-        return $this->index()->with([
+        return back()->with([
             'meldung_success' => 'Dein Post <b>' . $old_name . '</b> wurde erfolgreich gelöscht.'
         ]);
     }

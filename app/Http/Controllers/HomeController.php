@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $meldung_success = Session::get('meldung_success');
+
+        $posts = Post::select()
+        ->where('user_id', auth()->id())
+        ->orderBy('updated_at', 'DESC')
+        ->get();
+
+        return view('home')->with(
+            [
+                'posts' => $posts,
+                'meldung_success' => $meldung_success
+            ]
+        );
     }
 }
