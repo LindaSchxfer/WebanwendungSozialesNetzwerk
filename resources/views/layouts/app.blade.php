@@ -99,21 +99,23 @@
 
             @isset($meldung_success)
                 <div class="cotainer">
-                </div class="alert alert-success" role="alert">
-                    {!! $meldung_success !!}
+                    <div style="text-align: center" class="alert alert-success" role="alert">
+                        {!! $meldung_success !!}
+                    </div>
                 </div>
             @endisset
 
             @isset($meldung_hinweis)
-            <div class="cotainer">
-            </div class="alert alert-warning" role="alert">
-                {!! $meldung_hinweis !!}
+            <div style="text-align: center" class="cotainer">
+                <div class="alert alert-warning" role="alert">
+                    {!! $meldung_hinweis !!}
+                </div>
             </div>
         @endisset
 
             @if($errors->any())
-                <div class="cotainer">
-                    </div class="alert alert-danger">
+                <div style="text-align: center" class="cotainer">
+                    <div class="alert alert-danger">
                         Bitte überprüfe Deine Eingaben!
                         <ul class="mb-0">
                             @foreach($errors->all() as $error)
