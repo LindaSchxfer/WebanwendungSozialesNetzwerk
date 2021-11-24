@@ -49,6 +49,7 @@ class PostController extends Controller
             [
                 'name' => $request['name'],
                 'beschreibung' => $request['beschreibung'],
+                'user_id' => auth()->id(),
             ]
         );
         $post->save();

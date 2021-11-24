@@ -21,7 +21,9 @@
                             </li>
                         @endforeach
                     </ul> 
+                    @auth
                     <a class="btn btn-success btn-sm mt-3" href="/post/create"><i class="fas fa-plus-circle"></i>Neuen Post anlegen</a>
+                    @endauth
                     <div class="mt-3">
                             {{ $posts->links('pagination::bootstrap-4') }}
                     </div>
