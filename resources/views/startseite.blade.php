@@ -11,9 +11,8 @@
 
                 <div class="card-body">
 
-                    Willkommen bei lindagram!
-
-                    <span class="btn btn-primary"><i class="fas fa-plus"></i>Hallo</span>
+                    
+                    <h2>Willkommen bei lindagram!</h2>
 
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -21,7 +20,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    
                 </div>
             </div>
         </div>

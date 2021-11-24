@@ -36,7 +36,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
+                            <!-- im eingeloggten Zustand -->
+                            @auth
+                            <a class="nav-link {{Request::is('home') ? 'active' : ''}}" href="/home">Home</a>
+                            @endauth
+                            <!-- im nicht eingeloggten Zustand -->
+                            @guest
                             <a class="nav-link {{Request::is('/') ? 'active' : ''}}" href="/">Startseite</a>
+                            @endguest
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{Request::is('post*') ? 'active' : ''}}" href="/post">Posts</a>
@@ -96,6 +103,13 @@
                     {!! $meldung_success !!}
                 </div>
             @endisset
+
+            @isset($meldung_hinweis)
+            <div class="cotainer">
+            </div class="alert alert-warning" role="alert">
+                {!! $meldung_hinweis !!}
+            </div>
+        @endisset
 
             @if($errors->any())
                 <div class="cotainer">

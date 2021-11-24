@@ -56,9 +56,10 @@ class PostController extends Controller
         );
         $post->save();
         //return redirect('/post');
-        return $this->index()->with([
+        /*return $this->index()->with([
             'meldung_success' => 'Dein Post <b>' . $post->name . '</b> wurde erfolgreich angelegt.'
-        ]);
+        ]);*/
+        return redirect('/post/' . $post->id)->with('meldung_hinweis', 'Bitte weise deinem Post ein oder mehrere Hashtags zu.');
     }
 
     /**
@@ -76,12 +77,15 @@ class PostController extends Controller
         //alle noch verfügbaren Hashtags
         $availableHashtags = $allHashtags->diff($usedHashtags);
 
-        
+        //Meldungen refreshen
         $meldung_success = Session::get('meldung_success');
+        $meldung_hinweis = Session::get('meldung_hinweis');
+
         return view('post.show')->with('post',$post)->with(
             [
                 'post' => $post,
                 'meldung_success' => $meldung_success,
+                'meldung_hinweis' => $meldung_hinweis,
                 'availableHashtags' => $availableHashtags
             ]
         );
