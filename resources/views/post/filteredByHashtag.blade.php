@@ -5,8 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Alle Posts</div>
-
+                <div class="card-header">Alle Posts mit dem Hashtag <span style="font-size: 120%" class="ml-2 badge badge-{{$hashtag->color}}">{{$hashtag->name}}</span>
+                    <a class="float-right" href="/post">Zurück zu allen Posts</a>
+                </div>
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach ($posts as $post)
