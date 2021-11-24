@@ -13,12 +13,13 @@
                             <li class="list-group-item">
                                 <span style="font-size: 130%;" class="mr-2 badge badge-{{ $hashtag->color}}">{{$hashtag->name}}</span>
                                 ({{ $hashtag->color}})
-                                <a class="ml-2 btn btn-sm btn-outline-primary" href="/hashtag/{{ $hashtag->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
+                                <a class="ml-2 btn btn-sm btn-outline-primary" href="/hashtag/{{ $hashtag->id }}/edit">Bearbeiten</a>
                                 <form style="display: inline;" action="/hashtag/{{ $hashtag->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input class="btn btn-outline-danger btn-sm" type="submit" value="Löschen">
-                                </form>
+                                </form> 
+                                <a class="float-right" href="/post/hashtag/{{ $hashtag->id }}">{{ $hashtag->posts->count()}} mal verwendet</a>
                             </li>
                         @endforeach
                     </ul> 
