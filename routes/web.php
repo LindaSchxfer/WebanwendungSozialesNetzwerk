@@ -25,9 +25,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resources(['hobby' => 'App\Http\Controllers\HobbyController']);
-
 Route::resources(['hashtag' => 'App\Http\Controllers\HashtagController']);
 
 Route::resources(['post' => 'App\Http\Controllers\PostController']);
+
+Route::resources(['user' => 'App\Http\Controllers\UserController']);
 
