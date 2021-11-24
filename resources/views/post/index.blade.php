@@ -20,7 +20,10 @@
                                     <input class="ml-2 btn btn-outline-danger btn-sm float-right" type="submit" value="Löschen">
                                 </form>
                                 <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
-                                <div class="float-right">{{ $post->created_at->diffForHumans() . " gepostet" }}</div>
+                                <div class="float-right">{{ $post->created_at->diffForHumans() . " gepostet" }}</div><br>
+                                @foreach ($post->hashtags as $hashtag)
+                                    <a class="badge badge-{{$hashtag->color}}" href="">{{ $hashtag->name }}</a>
+                                @endforeach
                             </li>
                         @endforeach
                     </ul> 
