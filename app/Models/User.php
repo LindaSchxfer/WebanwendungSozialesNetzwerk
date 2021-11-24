@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function posts(){
-       return $this->hasMany('App\Models\Hobby');
+       return $this->hasMany('App\Models\Post');
     }
 
     /**

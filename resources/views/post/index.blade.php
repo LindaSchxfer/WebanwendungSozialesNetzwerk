@@ -19,7 +19,7 @@
                                 <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
                                 <a class="ml-2 float-right" href="/post/{{ $post->id }}">Detailansicht</a>
 
-                                <b><a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b></span> 
+                                <b><a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b> 
                                 <br>
                                 {{$post->name}} <br> {{$post->beschreibung}} <br>   
                                 @foreach ($post->hashtags as $hashtag)
