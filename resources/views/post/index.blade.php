@@ -11,6 +11,9 @@
                     <ul class="list-group">
                         @foreach ($posts as $post)
                             <li class="list-group-item">{{$post->name}} {{$post->beschreibung}}
+
+                                <span class="mx-2"> Von {{ $post->user_id}} </span>
+
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
