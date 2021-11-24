@@ -32,3 +32,6 @@ Route::resources(['post' => 'App\Http\Controllers\PostController']);
 Route::resources(['user' => 'App\Http\Controllers\UserController']);
 
 Route::get('/post/hashtag/{hashtag_id}', [App\Http\Controllers\HashtagPostController::class, 'getFilteredPosts'])->name('hashtag_post');
+
+Route::get('/post/{post_id}/hashtag/{hashtag_id}/attach', [App\Http\Controllers\HashtagPostController::class, 'attachHashtag']);
+Route::get('/post/{post_id}/hashtag/{hashtag_id}/detach', [App\Http\Controllers\HashtagPostController::class, 'detachHashtag']);

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Hashtag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -67,7 +69,22 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post.show')->with('post',$post);
+        //alle Hashtags 
+        $allHashtags = Hashtag::all();
+        //alle verwendeten Hashtags
+        $usedHashtags = $post->hashtags;
+        //alle noch verfügbaren Hashtags
+        $availableHashtags = $allHashtags->diff($usedHashtags);
+
+        
+        $meldung_success = Session::get('meldung_success');
+        return view('post.show')->with('post',$post)->with(
+            [
+                'post' => $post,
+                'meldung_success' => $meldung_success,
+                'availableHashtags' => $availableHashtags
+            ]
+        );
     }
 
     /**
