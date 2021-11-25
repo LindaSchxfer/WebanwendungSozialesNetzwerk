@@ -7,6 +7,7 @@ use App\Models\Hashtag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -117,6 +118,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+
+        if(auth()->guest()){
+            abort(403); //wird rausgeschmissen
+        }
+
+        abort_unless($post->user_id === auth()->id() || auth()->user()->rolle === 'admin', 403); //Nur Admin und richtiger User dürfen bearbeiten
+
         return view('post.edit')->with('post',$post);
     }
 
@@ -129,6 +137,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        abort_unless(Gate::allows('update', $post), 403); 
+        
         $request->validate(
             [
                 'name' => 'required|min:3',
@@ -155,6 +165,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        //Ist der User überhaupt eingeloggt?
+        if(auth()->guest()){
+            abort(403); //wird rausgeschmissen
+        }
+
+        //Hat der User das Recht zu löschen?
+        abort_unless(Gate::allows('delete', $post), 403); 
+        
         $old_name = $post->name;
         $post->delete();
         return back()->with([

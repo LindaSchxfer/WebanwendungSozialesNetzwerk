@@ -10,15 +10,22 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability){
+        
+        if ($user->rolle === 'admin'){
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user) //bezieht sich auf die index()
     {
-        //
+        //jeder darf die Datensätze sehen
     }
 
     /**
@@ -28,9 +35,9 @@ class PostPolicy
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Post $post) //bezieht sich auf die show()
     {
-        //
+        //jeder darf die Einzelansichten sehen
     }
 
     /**
@@ -39,9 +46,9 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user) //bezieht sich auf die store()
     {
-        //
+        //jeder eingeloggte User darf Posts erstellen
     }
 
     /**
@@ -51,9 +58,9 @@ class PostPolicy
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Post $post) //bezieht sich auf die update()
     {
-        //
+        return $user->id === $post->user_id; // nur wenn die UserId mit der PostId übereinstimmt darf ich den Post bearbeiten
     }
 
     /**
@@ -63,9 +70,9 @@ class PostPolicy
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Post $post) //bezieht sich auf die destroy()
     {
-        //
+        return $user->id === $post->user_id; // nur wenn die UserId mit der PostId übereinstimmt darf ich den Post löschen
     }
 
     /**

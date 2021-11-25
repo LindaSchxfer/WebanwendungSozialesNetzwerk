@@ -8,7 +8,7 @@
 </head>
 <body style="background: url('/error-image-lindagram.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center">
     <div style="color:white; margin:100px auto; text-align:center; ">
-        <h1 style="font-size:240%; margin-top:40%;">403 - Nur für Admins!</h1>
+        <h1 style="font-size:240%; margin-top:40%;">403 - Verboten!</h1>
     </div> 
 </body>
 </html>
