@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Hashtag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -53,6 +54,7 @@ class PostController extends Controller
             [
                 'name' => 'required|min:3',
                 'beschreibung' => 'required|min:5',
+                'bild' => 'mimes:jpg,bmp,png'
             ]
         );
 
@@ -124,8 +126,25 @@ class PostController extends Controller
             [
                 'name' => 'required|min:3',
                 'beschreibung' => 'required|min:5',
+                'bild' => 'mimes:jpg,bmp,png'
             ]
         );
+
+        if($request->bild){
+            $bild = Image::make($request->bild);
+            $breite = $bild->width();
+            $hoehe = $bild->height();
+            if ($breite > $hoehe){
+                Image::make($request->bild)
+                    ->widen(1200)
+                    ->save(public_path() . '/img/post/' . $post->id . '_gross.jpg');
+                Image::make($request->bild)
+                ->widen(60)
+                ->save(public_path() . '/img/post/' . $post->id . '_thumb.jpg');
+            }else{
+
+            }
+        }
 
         $post->update([
             'name' => $request->name,

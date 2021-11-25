@@ -8,13 +8,18 @@
                 <div class="card-header">Post bearbeiten</div>
 
                 <div class="card-body">
-                    <form action = "/post/{{ $post->id }}" method="post">
+                    <form autocomplete="off" action = "/post/{{ $post->id }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control {{$errors->has('name') ? 'border-danger' : ''}}" id="name" name="name" value="{{old('name') ?? $post->name }}">
                             <small class="form-text text-danger">{!! $errors->first('name') !!}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Bild</label>
+                            <input type="file" class="form-control {{$errors->has('bild') ? 'border-danger' : ''}}" id="bild" name="bild" value="">
+                            <small class="form-text text-danger">{!! $errors->first('bild') !!}</small>
                         </div>
                         <div class="form-group">
                             <label for="beschreibung">Beschreibung</label>
