@@ -13,22 +13,28 @@
                         @foreach ($posts as $post)
                         
                             <li class="list-group-item">
+                                <b><a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b><br>
                                 <a href="/user/{{ $post->user->id }}"><img src="/img/thumb_hoch.jpg"></a>
                                 <br>
-                                {{$post->name}} {{$post->beschreibung}}
+                                {{$post->name}} {{$post->beschreibung}} <br>
 
-                                <span class="mx-2"><b> Von <a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b></span>
-
+                                @can('delete', $post)
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input class="ml-2 btn btn-outline-danger btn-sm float-right" type="submit" value="Löschen">
                                 </form>
+                                @endcan
+                                
+                                @can('update', $post)
                                 <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
-                                <div class="float-right">{{ $post->created_at->diffForHumans() . " gepostet" }}</div><br>
+                                @endcan
+                                
                                 @foreach ($post->hashtags as $hashtag)
-                                    <a class="badge badge-{{$hashtag->color}}" href="/post/hashtag/{{ $hashtag->id }}">{{ $hashtag->name }}</a>
+                                    <a class="float-left badge badge-{{$hashtag->color}}" href="/post/hashtag/{{ $hashtag->id }}">{{ $hashtag->name }}</a>
                                 @endforeach
+                                <br>
+                                <div style="font-size: 80%; font-color:#707070;">{{ $post->created_at->diffForHumans()}}</div>
                             </li>
                         @endforeach
                     </ul> 

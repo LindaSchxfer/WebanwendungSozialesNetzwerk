@@ -13,19 +13,33 @@
                             <p><b>{{ $post->name}}</b></p> 
                             <p>{{ $post->beschreibung}}</p> 
                             @if($post->hashtags->count() > 0)
+
+                            @can('update', $post)
                             <p>
                                 <b>Verknüpfte Hashtags:</b> (Klicken, zum entfernen)<br>
                                 @foreach ($post->hashtags as $hashtag)
-                                    <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/detach">{{ $hashtag->name }}</a>
+                                    <a class="badge badge-{{$hashtag->color}}">{{ $hashtag->name }}</a>
                                 @endforeach
                             </p>
+                            @else
+                            <p>
+                                <b>Verknüpfte Hashtags:</b> <br>
+                                @foreach ($post->hashtags as $hashtag)
+                                    <span class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/detach">{{ $hashtag->name }}</span>
+                                @endforeach
+                            </p>
+                            @endcan
                             @endif
+
+                            @can('update', $post)
                             <p>
                                 <b>Verfügbare Hashtags:</b> (Klicken, zum hinzufügen)<br>
                                 @foreach ($availableHashtags as $hashtag)
                                     <a class="badge badge-{{$hashtag->color}}" href="/post/{{ $post->id }}/hashtag/{{ $hashtag->id }}/attach">{{ $hashtag->name }}</a>
                                 @endforeach
                             </p>
+                            @endcan
+
                         </div>
                         <div class="col-md-3">
                                 <img class="img-fluid" src="/img/400x300.jpg" alt="">

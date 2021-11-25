@@ -12,12 +12,18 @@
                         @foreach ($posts as $post)
                             <li class="list-group-item">
                                 
+                                @can('delete', $post)
                                 <form style="display: inline;" action="/post/{{ $post->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input class="ml-2 btn btn-outline-danger btn-sm float-right" type="submit" value="Löschen">
                                 </form>
-                                <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
+                                @endcan
+
+                                @can('update', $post)
+                                    <a class="ml-2 btn btn-sm btn-outline-primary float-right" href="/post/{{ $post->id }}/edit"><i class="fas fa-edit"></i>Bearbeiten</a>
+                                @endcan
+                                
                                 <a class="ml-2 float-right" href="/post/{{ $post->id }}">Detailansicht</a>
 
                                 <b><a href="/user/{{$post->user->id}}"> {{ $post->user->name}} </a></b> 

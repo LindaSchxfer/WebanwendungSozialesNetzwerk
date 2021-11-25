@@ -30,7 +30,7 @@ class HashtagPolicy
      */
     public function view(User $user, Hashtag $hashtag)
     {
-        //
+        return $user->rolle === 'admin'; 
     }
 
     /**
@@ -41,7 +41,7 @@ class HashtagPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->rolle === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class HashtagPolicy
      */
     public function update(User $user, Hashtag $hashtag)
     {
-        //
+        return $user->rolle === 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class HashtagPolicy
      */
     public function delete(User $user, Hashtag $hashtag)
     {
-        //
+        return $user->rolle === 'admin';
     }
 
     /**
@@ -77,7 +77,7 @@ class HashtagPolicy
      */
     public function restore(User $user, Hashtag $hashtag)
     {
-        //
+        return $user->rolle === 'admin';
     }
 
     /**
@@ -89,6 +89,6 @@ class HashtagPolicy
      */
     public function forceDelete(User $user, Hashtag $hashtag)
     {
-        //
+        return $user->rolle === 'admin';
     }
 }
