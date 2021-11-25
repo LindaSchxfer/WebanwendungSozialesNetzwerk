@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 class PostController extends Controller
 {
 
+    //was der User im nicht eingeloggten Zustand machen kann
     public function __construct(){
 
         $this->middleware('auth')->except(['index', 'show']);

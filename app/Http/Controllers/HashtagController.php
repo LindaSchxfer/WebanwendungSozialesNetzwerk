@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class HashtagController extends Controller
 {
+
+    //was der User im nicht eingeloggten Zustand machen kann
+    public function __construct(){
+
+        $this->middleware('auth')->except(['index']);
+    }
+
     /**
      * Display a listing of the resource.
      *
