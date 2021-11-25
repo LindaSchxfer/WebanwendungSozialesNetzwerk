@@ -57,7 +57,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit')->with('user',$user);
     }
 
     /**
@@ -69,7 +69,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate(
+            [
+                'profil_name' => 'required|min:3',
+                'bild' => 'mimes:jpg,bmp,png'
+            ]
+        );
+
+
+        $user->update([
+            'profil_name' => $request->profil_name,
+            'steckbrief' => $request->steckbrief,
+        ]);
+
+        return redirect('/home');
     }
 
     /**
