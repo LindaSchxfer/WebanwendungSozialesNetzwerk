@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -64,6 +65,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if(auth()->guest()){
+            abort(403); //wird rausgeschmissen
+        }
+
+        abort_unless($user->id === auth()->id() || auth()->user()->rolle === 'admin', 403); //Nur Admin und richtiger User dürfen bearbeiten
+
         return view('user.edit')->with('user',$user);
     }
 
@@ -76,6 +83,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        abort_unless(Gate::allows('update', $user), 403); 
+
         $request->validate(
             [
                 'profil_name' => 'required|min:3',
